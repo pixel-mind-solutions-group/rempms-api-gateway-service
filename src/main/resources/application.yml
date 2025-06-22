@@ -9,9 +9,3 @@ spring:
     name: rempms-api-gateway-service
   config:
     import: "configserver:http://localhost:8071/"
-
-logging:
-  level:
-    org:
-      springframework:
-        cloud: DEBUG
