@@ -39,7 +39,7 @@ spring:
             - Path=/api/recruitment/**
 
         - id: rempms-candidate-service
-          uri: lb://rempms-candidate-service  # Replace with actual service port
+          uri: http://localhost:7080  # Replace with actual service port
           predicates:
             - Path=/api/candidate/**
 
