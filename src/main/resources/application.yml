@@ -1,54 +1,17 @@
-server:
-  port: 8081
-
 spring:
-  application:
-    name: rempms-api-gateway-service
   main:
     web-application-type: reactive
-  cloud:
-    consul:
-      discovery:
-        register: true
-        prefer-ip-address: true
-    gateway:
-      routes:
-        - id: iam-service
-          uri: lb://iam-service  # Replace with actual service port
-          predicates:
-            - Path=/api/iam/**
 
-        - id: pdev-keycloak-service
-          uri: lb://pdev-keycloak-service  # Replace with actual service port
-          predicates:
-            - Path=/api/kcs/**
+  profiles:
+    active: default
 
-        - id: rempms-location-service
-          uri: lb://rempms-location-service  # Replace with actual service port
-          predicates:
-            - Path=/api/location/**
+  application:
+    name: rempms-api-gateway-service
+  config:
+    import: "configserver:http://localhost:8071/"
 
-        - id: rempms-communication-service
-          uri: lb://rempms-communication-service  # Replace with actual service port
-          predicates:
-            - Path=/api/communication/**
-
-        - id: rempms-recruitment-service
-          uri: lb://rempms-recruitment-service  # Replace with actual service port
-          predicates:
-            - Path=/api/recruitment/**
-
-        - id: rempms-candidate-service
-          uri: http://localhost:7080  # Replace with actual service port
-          predicates:
-            - Path=/api/candidate/**
-
-        - id: rempms-document-service
-          uri: lb://rempms-document-service  # Replace with actual service port
-          predicates:
-            - Path=/api/document/**
-
-        - id: rempms-draft-service
-          uri: lb://rempms-draft-service  # Replace with actual service port
-          predicates:
-            - Path=/api/draft/**
+logging:
+  level:
+    org:
+      springframework:
+        cloud: DEBUG
