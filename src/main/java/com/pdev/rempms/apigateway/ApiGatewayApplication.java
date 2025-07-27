@@ -35,6 +35,19 @@ public class ApiGatewayApplication {
                                         .setBackoff(Duration.ofMillis(100), Duration.ofMillis(1000), 2, true))
                         )
                         .uri("lb://REMPMS-LOCATION-SERVICE"))
+                .route("recruitment-service-route", p -> p
+                        .path("/api/recruitment/**")
+                        .filters(f -> f
+                                .rewritePath("/(?<segment>.*)", "/${segment}")
+                                // circuit breaker pattern
+                                .circuitBreaker(config -> config
+                                        .setName("recruitmentCircuitBreaker")
+                                        .setFallbackUri("forward:/fallback/response/message"))
+                                // retry pattern
+                                .retry(retryConfig -> retryConfig.setRetries(3).setMethods(HttpMethod.GET)
+                                        .setBackoff(Duration.ofMillis(100), Duration.ofMillis(1000), 2, true))
+                        )
+                        .uri("lb://REMPMS-RECRUITMENT-SERVICE"))
                 .build();
     }
 }
