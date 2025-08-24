@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.pdev.rempms</groupId>
-    <artifactId>api-gateway</artifactId>
+    <artifactId>rempms-api-gateway-service</artifactId>
     <version>0.0.1</version>
     <packaging>war</packaging>
-    <name>api-gateway</name>
+    <name>rempms-api-gateway-service</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>21</java.version>
@@ -31,11 +31,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-consul-discovery</artifactId>-->
-<!--            <version>4.0.2</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-consul-discovery</artifactId>-->
+        <!--            <version>4.0.2</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
@@ -109,30 +109,21 @@
     </dependencyManagement>
 
     <build>
-        <finalName>rempms-api-gateway-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.1.5</version>
             </plugin>
-
-            <!-- https://mvnrepository.com/artifact/com.google.cloud.tools/jib-maven-plugin -->
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
-                <version>3.4.4</version>
+                <version>3.4.5</version>
                 <configuration>
-                    <from>
-                        <image>openjdk:21-jdk</image>
-                    </from>
                     <to>
-                        <image>registry.hub.docker.com/maleeshasa/rempms-api-gateway-service</image>
-                        <tags>${project.version}</tags>
+                        <image>docker.io/maleeshasa/${project.artifactId}:v3</image>
                     </to>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
