@@ -11,7 +11,6 @@
     <groupId>com.pdev.rempms</groupId>
     <artifactId>rempms-api-gateway-service</artifactId>
     <version>0.0.1</version>
-    <packaging>war</packaging>
     <name>rempms-api-gateway-service</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -117,7 +116,7 @@
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
-                <version>3.4.5</version>
+                <version>3.4.6</version>
                 <configuration>
                     <to>
                         <image>docker.io/maleeshasa/${project.artifactId}:v3</image>
