@@ -1,11 +1,7 @@
 spring:
-  main:
-    web-application-type: reactive
-
   profiles:
     active: default
-
   application:
     name: rempms-api-gateway-service
   config:
-    import: "configserver:http://localhost:8071/"
+    import: "configserver:${CONFIG_SERVER_URL:http://localhost:8071/}"
